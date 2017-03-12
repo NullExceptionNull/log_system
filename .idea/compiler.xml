@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="log" />
+        <module name="log_util" />
+        <module name="spring_util" />
+        <module name="trade_common" />
+        <module name="trade_coupon" />
+        <module name="trade_web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="cou_pon" target="1.5" />
+      <module name="enterprise" target="1.5" />
+      <module name="log" target="1.7" />
+      <module name="log_system" target="1.7" />
+      <module name="log_util" target="1.7" />
+      <module name="rpc" target="1.7" />
+      <module name="spring_util" target="1.7" />
+      <module name="trade_common" target="1.7" />
+      <module name="trade_coupon" target="1.5" />
+      <module name="trade_dao" target="1.5" />
+      <module name="trade_order" target="1.5" />
+      <module name="trade_pay" target="1.5" />
+      <module name="trade_system" target="1.7" />
+      <module name="trade_web" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

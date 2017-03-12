@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.aisino.mapper.BehaviorMapper" >
+  <resultMap id="BaseResultMap" type="com.aisino.entity.Behavior" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="taxcode" property="taxcode" jdbcType="VARCHAR" />
+    <result column="machineno" property="machineno" jdbcType="INTEGER" />
+    <result column="module" property="module" jdbcType="VARCHAR" />
+    <result column="moduletype" property="moduletype" jdbcType="VARCHAR" />
+    <result column="modulefather" property="modulefather" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="action" property="action" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, taxcode, machineno, module, moduletype, modulefather, time, action
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.aisino.entity.BehaviorExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from behavior
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from behavior
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from behavior
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.aisino.entity.BehaviorExample" >
+    delete from behavior
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.aisino.entity.Behavior" >
+    insert into behavior (id, taxcode, machineno, 
+      module, moduletype, modulefather, 
+      time, action)
+    values (#{id,jdbcType=BIGINT}, #{taxcode,jdbcType=VARCHAR}, #{machineno,jdbcType=INTEGER}, 
+      #{module,jdbcType=VARCHAR}, #{moduletype,jdbcType=VARCHAR}, #{modulefather,jdbcType=VARCHAR}, 
+      #{time,jdbcType=TIMESTAMP}, #{action,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.aisino.entity.Behavior" >
+    insert into behavior
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="taxcode != null" >
+        taxcode,
+      </if>
+      <if test="machineno != null" >
+        machineno,
+      </if>
+      <if test="module != null" >
+        module,
+      </if>
+      <if test="moduletype != null" >
+        moduletype,
+      </if>
+      <if test="modulefather != null" >
+        modulefather,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="action != null" >
+        action,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="taxcode != null" >
+        #{taxcode,jdbcType=VARCHAR},
+      </if>
+      <if test="machineno != null" >
+        #{machineno,jdbcType=INTEGER},
+      </if>
+      <if test="module != null" >
+        #{module,jdbcType=VARCHAR},
+      </if>
+      <if test="moduletype != null" >
+        #{moduletype,jdbcType=VARCHAR},
+      </if>
+      <if test="modulefather != null" >
+        #{modulefather,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="action != null" >
+        #{action,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.aisino.entity.BehaviorExample" resultType="java.lang.Integer" >
+    select count(*) from behavior
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update behavior
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.taxcode != null" >
+        taxcode = #{record.taxcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.machineno != null" >
+        machineno = #{record.machineno,jdbcType=INTEGER},
+      </if>
+      <if test="record.module != null" >
+        module = #{record.module,jdbcType=VARCHAR},
+      </if>
+      <if test="record.moduletype != null" >
+        moduletype = #{record.moduletype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modulefather != null" >
+        modulefather = #{record.modulefather,jdbcType=VARCHAR},
+      </if>
+      <if test="record.time != null" >
+        time = #{record.time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.action != null" >
+        action = #{record.action,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update behavior
+    set id = #{record.id,jdbcType=BIGINT},
+      taxcode = #{record.taxcode,jdbcType=VARCHAR},
+      machineno = #{record.machineno,jdbcType=INTEGER},
+      module = #{record.module,jdbcType=VARCHAR},
+      moduletype = #{record.moduletype,jdbcType=VARCHAR},
+      modulefather = #{record.modulefather,jdbcType=VARCHAR},
+      time = #{record.time,jdbcType=TIMESTAMP},
+      action = #{record.action,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.aisino.entity.Behavior" >
+    update behavior
+    <set >
+      <if test="taxcode != null" >
+        taxcode = #{taxcode,jdbcType=VARCHAR},
+      </if>
+      <if test="machineno != null" >
+        machineno = #{machineno,jdbcType=INTEGER},
+      </if>
+      <if test="module != null" >
+        module = #{module,jdbcType=VARCHAR},
+      </if>
+      <if test="moduletype != null" >
+        moduletype = #{moduletype,jdbcType=VARCHAR},
+      </if>
+      <if test="modulefather != null" >
+        modulefather = #{modulefather,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="action != null" >
+        action = #{action,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.aisino.entity.Behavior" >
+    update behavior
+    set taxcode = #{taxcode,jdbcType=VARCHAR},
+      machineno = #{machineno,jdbcType=INTEGER},
+      module = #{module,jdbcType=VARCHAR},
+      moduletype = #{moduletype,jdbcType=VARCHAR},
+      modulefather = #{modulefather,jdbcType=VARCHAR},
+      time = #{time,jdbcType=TIMESTAMP},
+      action = #{action,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
