@@ -18,18 +18,21 @@ import java.text.SimpleDateFormat;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:xml/spring-dao.xml")
+
 public class LogTest implements Serializable {
     @Autowired
     private LogMapper logMapper;
     @Test
     public void test(){
         Log log = new Log();
+        //IP
         log.setIp("192.168.0.1");
         log.setLogtype(100);
         //log.setInserttime("1481873847391");
         DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         long l = Long.parseLong("1481873847391");
         Timestamp ts = new Timestamp(l);
+        //git测试
 
         log.setInserttime(ts);
         int ret = logMapper.insert(log);
